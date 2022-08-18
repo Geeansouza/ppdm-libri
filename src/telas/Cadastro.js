@@ -38,6 +38,15 @@ const Cadastro = ()=>{
     }
    
     /***** VALIDAÇÃO DOS DADOS DE CADASTRO *****/
+
+    //STATE DE ERRO DE PREENCHIMENTO
+    const [errors, setErrors] = React.useState({});
+
+    //FUNÇÃO HANDLER QUE CONFIGURA AS MENSAGENS DE ERRO NA STATE
+    const handlerErrors = (errorMesage, input)=>{
+      setErrors((prevState)=>({...prevState, [input]:errorMesage}));
+    }
+
     //FUNÇÃO DE VALIDAÇÃO
     const validate = ()=>{
 
@@ -45,18 +54,23 @@ const Cadastro = ()=>{
 
       if (!inputs.titulo) {
         validate = false;
-        console.log('TITULO EM BRANCO.');
+        handlerErrors('Informe o título do livro.', 'titulo');
+        // console.log('TITULO EM BRANCO.');
       }
 
       if (!inputs.descricao) {
         validate = false;
-        console.log('DESCRIÇÃO EM BRANCO.');
+        handlerErrors('Informe a descrição do livro.', 'descricao');
+        // console.log('DESCRIÇÃO EM BRANCO.');
       }
 
       if (!inputs.capa) {
         validate = false;
-        console.log('CAPA EM BRANCO.');
+        handlerErrors('Informe a capa do livro.', 'capa');
+        // console.log('CAPA EM BRANCO.');
       }
+
+      console.log(errors);
 
     }
 
@@ -74,14 +88,20 @@ const Cadastro = ()=>{
 
             <Input 
                   label="TITULO"
+                  error={errors.titulo}
+                  onFocus={()=>{handlerErrors(null, 'titulo')}}
                   onChangeText = {(text)=>handlerOnChange(text, 'titulo')} />
             
             <Input 
                   label="DESCRIÇÃO" 
+                  error={errors.descricao}
+                  onFocus={()=>{handlerErrors(null, 'descricao')}}
                   onChangeText = {(text)=>handlerOnChange(text, 'descricao')}/>
             
             <Input 
                   label="CAPA" 
+                  error={errors.capa}
+                  onFocus={()=>{handlerErrors(null, 'capa')}}
                   onChangeText = {(text)=>handlerOnChange(text, 'capa')}/>
             
             <Button 

@@ -6,7 +6,7 @@ import {    View,
 
 import COLORS from '../const/colors';
 
-const Input = ({label, ...props})=>{
+const Input = ({label, error, onFocus=()=>{}, ...props})=>{
 
     return(
 
@@ -14,13 +14,17 @@ const Input = ({label, ...props})=>{
             
             <Text style={estilos.inputLabel}>{label}</Text>
 
-            <View style={estilos.inputContainer}>
+            <View style={[estilos.inputContainer, 
+                        {borderColor: error ? COLORS.red : COLORS.darkBlue }]}>
                 <TextInput 
                     style={estilos.textInput}
                     autoCorrect={false}
+                    onFocus={()=>{onFocus()}}
                     {...props}
                 />
             </View>
+
+            <Text>{error}</Text>
 
         </View>
 
