@@ -88,18 +88,21 @@ const Cadastro = ()=>{
 
             <Input 
                   label="TITULO"
+                  iconName="book-outline"
                   error={errors.titulo}
                   onFocus={()=>{handlerErrors(null, 'titulo')}}
                   onChangeText = {(text)=>handlerOnChange(text, 'titulo')} />
             
             <Input 
                   label="DESCRIÇÃO" 
+                  iconName="card-text-outline"
                   error={errors.descricao}
                   onFocus={()=>{handlerErrors(null, 'descricao')}}
                   onChangeText = {(text)=>handlerOnChange(text, 'descricao')}/>
             
             <Input 
                   label="CAPA" 
+                  iconName="image-outline"
                   error={errors.capa}
                   onFocus={()=>{handlerErrors(null, 'capa')}}
                   onChangeText = {(text)=>handlerOnChange(text, 'capa')}/>
