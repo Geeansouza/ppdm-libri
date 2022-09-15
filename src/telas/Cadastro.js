@@ -10,6 +10,8 @@ import Button from "../componentes/Button";
 
 import COLORS from '../const/colors';
 
+import apiLivraria from '../service/apiLivraria';
+
 const Cadastro = ()=>{
 
     /***** CAPTURA DE DADOS COM USO DE STATE *****/
@@ -70,7 +72,26 @@ const Cadastro = ()=>{
         // console.log('CAPA EM BRANCO.');
       }
 
+      if(validate){
+        //ENVIA OS DADOS PARA A API CADASTRAR.
+        cadastrar();
+        console.log('CADASTROU');
+      }
+
       console.log(errors);
+
+    }
+
+    const cadastrar = ()=>{
+
+        try{
+          const response = apiLivraria.post('/cadastrarLivros', 
+          {
+            titulo: inputs.titulo,
+            descricao: inputs.descricao,
+            imagem: inputs.capa,
+          });
+        }catch(error){}
 
     }
 
